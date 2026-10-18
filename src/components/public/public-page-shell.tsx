@@ -38,7 +38,7 @@ export function PublicPageShell({
           ចុះឈ្មោះចូលរៀនឥឡូវនេះ
         </Link>
       </div>
-      <header className="sticky top-0 z-40 border-b border-border/80 bg-card/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-[#cfd2d8] dark:border-slate-800 bg-[#e0e1e6] dark:bg-[#151921] shadow-2xs">
         <div className="mx-auto flex h-16 sm:h-[4.5rem] max-w-7xl items-center justify-between gap-3 px-3 sm:px-6 lg:px-8">
           <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
             <SchoolLogo size="sm" />
@@ -46,8 +46,8 @@ export function PublicPageShell({
               <p className="truncate text-base sm:text-xl font-extrabold tracking-tight text-[#1b365d] dark:text-blue-400 font-khmer">
                 វិទ្យាល័យសំរោងពន្លៃ
               </p>
-              <p className="truncate text-[10px] font-medium tracking-wide text-muted-foreground sm:text-[11px]">
-                Samrong Ponley High School • ស្រុកសំរោង ខេត្តតាកែវ
+              <p className="truncate text-[10px] font-medium tracking-wide text-slate-600 dark:text-slate-300 sm:text-[11px]">
+                Samrong Ponley High School • ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo)
               </p>
             </div>
           </Link>
@@ -87,9 +87,9 @@ export function PublicPageShell({
           </div>
         </div>
 
-        {/* Mobile Navigation Dropdown */}
+        {/* Mobile Navigation Dropdown (Borderless) */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-b border-border bg-card px-4 py-4 space-y-2 animate-in slide-in-from-top-2 duration-150 shadow-xl">
+          <div className="lg:hidden border-0 bg-card px-4 py-4 space-y-2 animate-in slide-in-from-top-2 duration-150 shadow-2xl">
             <div className="space-y-1">
               {links.map((link) => (
                 <Link

@@ -2,7 +2,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PublicPageShell } from "@/components/public/public-page-shell";
 
-const contacts = [[MapPin, "អាសយដ្ឋាន", "ស្រុកសំរោង ខេត្តតាកែវ"], [Phone, "ទូរស័ព្ទ", "០១២ ៣៤៥ ៦៧៨"], [Mail, "អ៊ីមែល", "info@samrongponley.edu.kh"]] as const;
+const contacts = [[MapPin, "អាសយដ្ឋាន", "ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo)"], [Phone, "ទូរស័ព្ទ", "០១២ ៣៤៥ ៦៧៨"], [Mail, "អ៊ីមែល", "info@samrongponley.edu.kh"]] as const;
 
 export default function ContactPage() {
   return (

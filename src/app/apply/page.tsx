@@ -49,7 +49,7 @@ export default function ApplyPage() {
     applicantPhone: "",
     dateOfBirth: "2010-01-01",
     sex: "MALE" as "MALE" | "FEMALE" | "OTHER",
-    address: "ខេត្តតាកែវ",
+    address: "ស្រុកអង្គរបុរី ខេត្តតាកែវ",
     previousSchool: "",
     applyingForGrade: "7",
     academicYearId: "5a988873-9f38-46cf-88ee-e1dba7941d45",
@@ -122,16 +122,16 @@ export default function ApplyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-card via-background to-muted/30 text-foreground flex flex-col">
       {/* Top Header */}
-      <header className="border-b border-border/80 bg-card/80 backdrop-blur-md sticky top-0 z-30">
+      <header className="border-b border-[#cfd2d8] dark:border-slate-800 bg-[#e0e1e6] dark:bg-[#151921] sticky top-0 z-30 shadow-2xs">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group focus:outline-none">
             <SchoolLogo size="md" />
             <div>
-              <div className="font-bold text-base tracking-tight text-foreground flex items-center gap-1.5 leading-none font-khmer">
+              <div className="font-bold text-base tracking-tight text-[#1b365d] dark:text-blue-400 flex items-center gap-1.5 leading-none font-khmer">
                 <span>វិទ្យាល័យសំរោងពន្លៃ</span>
               </div>
-              <span className="text-[11px] font-medium text-muted-foreground">
-                Samrong Ponley High School • ចុះឈ្មោះចូលរៀន
+              <span className="text-[11px] font-medium text-slate-600 dark:text-slate-300">
+                Samrong Ponley High School • ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo)
               </span>
             </div>
           </Link>
@@ -325,7 +325,7 @@ export default function ApplyPage() {
                         </label>
                         <Input
                           required
-                          placeholder="ឧទាហរណ៍៖ ឃុំសំរោង ស្រុកសំរោង ខេត្តតាកែវ"
+                          placeholder="ឧទាហរណ៍៖ ស្រុកអង្គរបុរី ខេត្តតាកែវ"
                           value={formData.address}
                           onChange={(e) =>
                             setFormData({ ...formData, address: e.target.value })

@@ -180,7 +180,7 @@ export default function HomePage() {
       </div>
 
       {/* Main Navigation Header */}
-      <header className="border-b border-border/80 bg-card/90 backdrop-blur-md sticky top-0 z-40 transition-colors">
+      <header className="border-b border-[#cfd2d8] dark:border-slate-800 bg-[#e0e1e6] dark:bg-[#151921] sticky top-0 z-40 transition-colors shadow-2xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
           {/* School Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group focus:outline-none">
@@ -191,8 +191,8 @@ export default function HomePage() {
                   វិទ្យាល័យសំរោងពន្លៃ
                 </span>
               </div>
-              <span className="text-[11px] font-medium text-muted-foreground block -mt-1 tracking-wide">
-                Samrong Ponley High School • ស្រុកសំរោង ខេត្តតាកែវ
+              <span className="text-[11px] font-medium text-slate-600 dark:text-slate-300 block -mt-1 tracking-wide">
+                Samrong Ponley High School • ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo)
               </span>
             </div>
           </Link>
@@ -295,9 +295,9 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Mobile Navigation Dropdown */}
+        {/* Mobile Navigation Dropdown (Borderless) */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-b border-border bg-card px-4 py-4 space-y-2 animate-in slide-in-from-top-2 duration-150 shadow-xl">
+          <div className="lg:hidden border-0 bg-card px-4 py-4 space-y-2 animate-in slide-in-from-top-2 duration-150 shadow-2xl">
             <div className="space-y-1">
               {[
                 { href: "/", label: "ទំព័រដើម" },
@@ -677,7 +677,7 @@ export default function HomePage() {
               អំពីវិទ្យាល័យសំរោងពន្លៃ
             </h2>
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              វិទ្យាល័យសំរោងពន្លៃ មានទីតាំងស្ថិតនៅស្រុកសំរោង ខេត្តតាកែវ ជាគ្រឹះស្ថានអប់រំចំណេះទូទៅកម្រិតមធ្យមសិក្សា ដែលមានបេសកកម្មចម្បងក្នុងការបណ្តុះបណ្តាលសិស្សានុសិស្សឱ្យទទួលបាននូវពុទ្ធិ សមត្ថភាព វិន័យ សីលធម៌ និងស្មារតីស្នេហាជាតិ។
+              វិទ្យាល័យសំរោងពន្លៃ មានទីតាំងស្ថិតនៅស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo) ជាគ្រឹះស្ថានអប់រំចំណេះទូទៅកម្រិតមធ្យមសិក្សា ដែលមានបេសកកម្មចម្បងក្នុងការបណ្តុះបណ្តាលសិស្សានុសិស្សឱ្យទទួលបាននូវពុទ្ធិ សមត្ថភាព វិន័យ សីលធម៌ និងស្មារតីស្នេហាជាតិ។
             </p>
             <div className="space-y-3 pt-2">
               <div className="flex items-start gap-3">
@@ -1013,7 +1013,7 @@ export default function HomePage() {
                 <div>
                   <strong className="font-semibold text-foreground">អាសយដ្ឋាន៖</strong>
                   <br />
-                  វិទ្យាល័យសំរោងពន្លៃ ឃុំសំរោង ស្រុកសំរោង ខេត្តតាកែវ ព្រះរាជាណាចក្រកម្ពុជា
+                  វិទ្យាល័យសំរោងពន្លៃ ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo) ព្រះរាជាណាចក្រកម្ពុជា
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -1141,7 +1141,7 @@ export default function HomePage() {
                 ទីតាំងសាលា
               </div>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                ស្រុកសំរោង ខេត្តតាកែវ ព្រះរាជាណាចក្រកម្ពុជា
+                ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo) ព្រះរាជាណាចក្រកម្ពុជា
               </p>
               <div className="text-xs text-muted-foreground">
                 ទូរស័ព្ទ៖ +855 (0)97 888 1234

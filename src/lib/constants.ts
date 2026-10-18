@@ -7,7 +7,7 @@ export const APP_CONFIG = {
   version: "1.0.0",
   academicYear: "2025-2026",
   schoolName: "វិទ្យាល័យសំរោងពន្លៃ",
-  schoolAddress: "ស្រុកសំរោង ខេត្តតាកែវ ប្រទេសកម្ពុជា",
+  schoolAddress: "ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo) ព្រះរាជាណាចក្រកម្ពុជា",
 };
 
 export const GRADES = [

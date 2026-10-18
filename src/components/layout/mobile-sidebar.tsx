@@ -151,7 +151,7 @@ export function MobileSidebar() {
         {/* Footer info */}
         <div className="pt-3 border-t border-border/50 text-xs text-muted-foreground">
           <p className="font-medium text-foreground">វិទ្យាល័យសំរោងពន្លៃ</p>
-          <p className="text-[11px] mt-0.5">ស្រុកសំរោង ខេត្តតាកែវ</p>
+          <p className="text-[11px] mt-0.5">ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo)</p>
         </div>
       </div>
     </div>

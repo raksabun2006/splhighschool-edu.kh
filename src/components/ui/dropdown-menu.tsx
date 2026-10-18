@@ -72,7 +72,7 @@ export function DropdownMenuContent({
   return (
     <div
       className={cn(
-        "absolute z-50 mt-2 min-w-[10rem] max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-border bg-popover p-1.5 text-popover-foreground shadow-lg animate-in fade-in-80 zoom-in-95",
+        "absolute z-50 mt-2 min-w-[10rem] max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border-0 ring-0 bg-popover/98 p-1.5 text-popover-foreground shadow-2xl shadow-black/15 dark:shadow-black/60 backdrop-blur-md animate-in fade-in-80 zoom-in-95",
         isRightAligned ? "right-0" : "left-0",
         className
       )}
@@ -111,7 +111,7 @@ export function DropdownMenuItem({
 }
 
 export function DropdownMenuSeparator({ className }: { className?: string }) {
-  return <div className={cn("-mx-1 my-1 h-px bg-border", className)} />;
+  return <div className={cn("-mx-1 my-1 h-px bg-muted/60", className)} />;
 }
 
 export function DropdownMenuLabel({
