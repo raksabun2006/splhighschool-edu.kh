@@ -1,4 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="educore-logo">
-  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="bgGrad2" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#22487a"/>
+      <stop offset="70%" stop-color="#13294b"/>
+      <stop offset="100%" stop-color="#0a182c"/>
+    </radialGradient>
+    <linearGradient id="goldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="30%" stop-color="#eab308"/>
+      <stop offset="70%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#854d0e"/>
+    </linearGradient>
+    <linearGradient id="innerGlow2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Ring Shadow and Border -->
+  <circle cx="100" cy="100" r="96" fill="none" stroke="url(#goldGrad2)" stroke-width="4"/>
+  <circle cx="100" cy="100" r="91" fill="none" stroke="#ca8a04" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+  <!-- Main Background Disc -->
+  <circle cx="100" cy="100" r="88" fill="url(#bgGrad2)"/>
+  <circle cx="100" cy="100" r="88" fill="url(#innerGlow2)"/>
+
+  <!-- Radiating Sunburst / Rays of Light -->
+  <g opacity="0.2" stroke="url(#goldGrad2)" stroke-width="1.5">
+    <line x1="100" y1="100" x2="100" y2="18"/>
+    <line x1="100" y1="100" x2="130" y2="22"/>
+    <line x1="100" y1="100" x2="70" y2="22"/>
+    <line x1="100" y1="100" x2="158" y2="38"/>
+    <line x1="100" y1="100" x2="42" y2="38"/>
+    <line x1="100" y1="100" x2="178" y2="65"/>
+    <line x1="100" y1="100" x2="22" y2="65"/>
+  </g>
+
+  <!-- Central Stupa Spire -->
+  <g transform="translate(100, 85) scale(0.85)">
+    <path d="M-42,42 C-42,10 -25,-25 0,-48 C25,-25 42,10 42,42 Z" fill="none" stroke="url(#goldGrad2)" stroke-width="2.5" opacity="0.9"/>
+    <path d="M-36,40 C-36,15 -20,-18 0,-40 C20,-18 36,15 36,40 Z" fill="#1b365d" opacity="0.8"/>
+
+    <polygon points="0,-56 3,-46 -3,-46" fill="url(#goldGrad2)"/>
+    <circle cx="0" cy="-44" r="3.5" fill="#fef08a"/>
+    
+    <path d="M-6,-41 L6,-41 L8,-32 L-8,-32 Z" fill="url(#goldGrad2)"/>
+    <rect x="-7" y="-32" width="14" height="2" fill="#fef08a"/>
+
+    <path d="M-10,-30 L10,-30 L13,-18 L-13,-18 Z" fill="url(#goldGrad2)"/>
+    <rect x="-12" y="-18" width="24" height="2.5" fill="#fef08a"/>
+
+    <path d="M-15,-15.5 L15,-15.5 L18,2 L-18,2 Z" fill="url(#goldGrad2)"/>
+    <path d="M-5,-9 C-5,-13 0,-15 0,-15 C0,-15 5,-13 5,-9 L5,0 L-5,0 Z" fill="#0a182c" stroke="url(#goldGrad2)" stroke-width="1"/>
+
+    <path d="M-22,4.5 L22,4.5 L26,20 L-26,20 Z" fill="url(#goldGrad2)"/>
+    
+    <path d="M-18,-15 C-28,-22 -32,-8 -22,2 C-26,4 -28,8 -26,14 C-21,12 -18,10 -15,8" fill="none" stroke="url(#goldGrad2)" stroke-width="1.8"/>
+    <path d="M18,-15 C28,-22 32,-8 22,2 C26,4 28,8 26,14 C21,12 18,10 15,8" fill="none" stroke="url(#goldGrad2)" stroke-width="1.8"/>
+
+    <path d="M0,20 C-12,14 -28,18 -32,28 C-25,32 -14,28 0,33 C14,28 25,32 32,28 C28,18 12,14 0,20 Z" fill="url(#goldGrad2)"/>
+    <path d="M0,24 C-8,20 -18,22 -22,28 C-10,27 0,31 0,31 C0,31 10,27 22,28 C18,22 8,20 0,24 Z" fill="#ffffff" opacity="0.85"/>
+  </g>
+
+  <!-- Laurel Wreaths -->
+  <g fill="url(#goldGrad2)" opacity="0.95">
+    <path d="M38,124 C34,116 33,105 34,94 C35,88 37,82 40,78 C38,84 37,92 38,98 C35,108 36,118 41,126 Z"/>
+    <ellipse cx="33" cy="102" rx="3.5" ry="6" transform="rotate(-25 33 102)"/>
+    <ellipse cx="36" cy="88" rx="3.5" ry="6" transform="rotate(-15 36 88)"/>
+    <ellipse cx="42" cy="75" rx="3" ry="5.5" transform="rotate(-5 42 75)"/>
+    <ellipse cx="35" cy="116" rx="3.5" ry="6" transform="rotate(-35 35 116)"/>
+
+    <path d="M162,124 C166,116 167,105 166,94 C165,88 163,82 160,78 C162,84 163,92 162,98 C165,108 164,118 159,126 Z"/>
+    <ellipse cx="167" cy="102" rx="3.5" ry="6" transform="rotate(25 167 102)"/>
+    <ellipse cx="164" cy="88" rx="3.5" ry="6" transform="rotate(15 164 88)"/>
+    <ellipse cx="158" cy="75" rx="3" ry="5.5" transform="rotate(5 158 75)"/>
+    <ellipse cx="165" cy="116" rx="3.5" ry="6" transform="rotate(35 165 116)"/>
+  </g>
+
+  <!-- Open Book of Wisdom -->
+  <g transform="translate(100, 134)" fill="url(#goldGrad2)">
+    <path d="M0,-2 C-14,-7 -28,-6 -38,-1 L-38,10 C-28,6 -14,6 0,11 C14,6 28,6 38,10 L38,-1 C28,-6 14,-7 0,-2 Z"/>
+    <path d="M-2,-1 C-14,-5 -26,-4 -35,0 L-35,8 C-26,4 -14,4 -2,8 Z" fill="#ffffff" opacity="0.9"/>
+    <path d="M2,-1 C14,-5 26,-4 35,0 L35,8 C26,4 14,4 2,8 Z" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- Bottom Ribbon with School Name -->
+  <g transform="translate(100, 160)">
+    <polygon points="-78,-3 -62,-10 -64,5 -80,10 -74,3" fill="#854d0e"/>
+    <polygon points="78,-3 62,-10 64,5 80,10 74,3" fill="#854d0e"/>
+
+    <path d="M-66,-8 C-30,-12 30,-12 66,-8 L62,10 C30,6 -30,6 -62,10 Z" fill="url(#goldGrad2)"/>
+    <path d="M-64,-6 C-30,-10 30,-10 64,-6 L61,8 C30,4 -30,4 -61,8 Z" fill="#1b365d"/>
+
+    <text x="0" y="3" text-anchor="middle" fill="#fef08a" font-size="8.5" font-weight="bold" font-family="'Kantumruy Pro', 'Khmer OS Siemreap', sans-serif" letter-spacing="0.5">
+      វិទ្យាល័យ សំរោងពន្លៃ
+    </text>
+  </g>
+
+  <path id="textArcTop2" d="M32,100 A68,68 0 0,1 168,100" fill="none"/>
+  <text fill="#fef08a" font-size="6.5" font-weight="bold" font-family="system-ui, sans-serif" letter-spacing="1.8">
+    <textPath href="#textArcTop2" startOffset="50%" text-anchor="middle">
+      SAMRONG PONLEY HIGH SCHOOL
+    </textPath>
+  </text>
 </svg>

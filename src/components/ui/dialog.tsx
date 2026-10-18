@@ -61,22 +61,22 @@ export function DialogContent({
   if (!context || !context.open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-xs transition-opacity animate-in fade-in"
+        className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity animate-in fade-in"
         onClick={() => context.onOpenChange(false)}
       />
       {/* Content */}
       <div
         className={cn(
-          "relative z-50 w-full max-w-lg rounded-xl border border-border bg-card p-6 shadow-xl animate-in zoom-in-95 sm:rounded-2xl",
+          "relative z-50 w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto rounded-xl border border-border bg-card p-4 sm:p-6 shadow-xl animate-in zoom-in-95 sm:rounded-2xl",
           className
         )}
       >
         <button
           onClick={() => context.onOpenChange(false)}
-          className="absolute right-4 top-4 rounded-md p-1 opacity-70 transition-opacity hover:opacity-100 hover:bg-muted focus:outline-none"
+          className="absolute right-3.5 top-3.5 sm:right-4 sm:top-4 rounded-md p-1.5 opacity-70 transition-opacity hover:opacity-100 hover:bg-muted focus:outline-none"
         >
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>

@@ -80,7 +80,7 @@ export function AttendanceChart() {
             <CardTitle>ស្ថិតិវត្តមានប្រចាំសប្តាហ៍</CardTitle>
             <CardDescription>អត្រាវត្តមានសិស្សជាក់ស្តែងពីប្រព័ន្ធ /api/v1/attendances</CardDescription>
           </div>
-          <div className="flex items-center gap-4 text-xs">
+          <div className="flex items-center flex-wrap gap-2 sm:gap-4 text-xs">
             <div className="flex items-center gap-1.5">
               <span className="h-3 w-3 rounded-xs bg-primary" />
               <span className="text-muted-foreground">សិស្សានុសិស្ស ({studentAvg > 0 ? `មធ្យម ${studentAvg}%` : "គ្មានទិន្នន័យ"})</span>

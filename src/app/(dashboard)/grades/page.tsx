@@ -266,7 +266,7 @@ export default function GradesPage() {
                       ))}
                     </Select>
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
                       <label className="text-xs font-medium text-foreground">ឆ្នាំសិក្សា</label>
                       <Select
@@ -311,7 +311,7 @@ export default function GradesPage() {
                     />
                   </div>
                 </div>
-                <DialogFooter>
+                <DialogFooter className="gap-2 sm:gap-0 pt-2">
                   <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
                     បោះបង់
                   </Button>
@@ -327,11 +327,13 @@ export default function GradesPage() {
 
       {/* Control Bar */}
       {!isStudent ? (
-        <div className="p-4 rounded-xl border border-border bg-card shadow-xs flex flex-col sm:flex-row items-center gap-4">
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            <School className="h-4 w-4 text-muted-foreground shrink-0" />
-            <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">តម្រងតាមថ្នាក់:</span>
-            <div className="w-48">
+        <div className="p-3.5 sm:p-4 rounded-xl border border-border bg-card shadow-xs flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+            <div className="flex items-center gap-1.5">
+              <School className="h-4 w-4 text-muted-foreground shrink-0" />
+              <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">តម្រងតាមថ្នាក់:</span>
+            </div>
+            <div className="w-full sm:w-48">
               <Select value={selectedClassId} onChange={(e) => setSelectedClassId(e.target.value)}>
                 <option value="all">ថ្នាក់ទាំងអស់</option>
                 {classes.map((c) => (
@@ -343,10 +345,12 @@ export default function GradesPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 w-full sm:w-auto">
-            <GraduationCap className="h-4 w-4 text-muted-foreground shrink-0" />
-            <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">ជ្រើសរើសសិស្ស:</span>
-            <div className="w-64">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
+            <div className="flex items-center gap-1.5">
+              <GraduationCap className="h-4 w-4 text-muted-foreground shrink-0" />
+              <span className="text-xs font-medium text-muted-foreground whitespace-nowrap">ជ្រើសរើសសិស្ស:</span>
+            </div>
+            <div className="w-full sm:w-64">
               <Select
                 value={selectedStudentId}
                 onChange={(e) => setSelectedStudentId(e.target.value)}
@@ -365,9 +369,9 @@ export default function GradesPage() {
           </div>
         </div>
       ) : (
-        <div className="p-4 rounded-xl border border-border bg-card shadow-xs flex flex-wrap items-center justify-between gap-4">
+        <div className="p-3.5 sm:p-4 rounded-xl border border-border bg-card shadow-xs flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-sm">
+            <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shrink-0">
               <GraduationCap className="h-5 w-5" />
             </div>
             <div>
@@ -384,11 +388,11 @@ export default function GradesPage() {
       )}
 
       {/* Live GPA & Score Summary Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-4 rounded-xl border border-border bg-card shadow-xs">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div className="p-3.5 sm:p-4 rounded-xl border border-border bg-card shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-muted-foreground">មធ្យមភាគនិទ្ទេស (GPA)</span>
-            <Award className="h-4 w-4 text-[#e53935]" />
+            <Award className="h-4 w-4 text-primary" />
           </div>
           <div className="mt-2 text-2xl font-bold text-foreground">
             {gpa !== "N/A" ? `${gpa} / 4.0` : "N/A"}
@@ -396,10 +400,10 @@ export default function GradesPage() {
           <span className="text-[11px] text-muted-foreground">គណនាផ្ទាល់ពីពិន្ទុដែលបានកត់ត្រា</span>
         </div>
 
-        <div className="p-4 rounded-xl border border-border bg-card shadow-xs">
+        <div className="p-3.5 sm:p-4 rounded-xl border border-border bg-card shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-muted-foreground">ពិន្ទុមធ្យមសរុប</span>
-            <BookOpen className="h-4 w-4 text-[#253c95]" />
+            <BookOpen className="h-4 w-4 text-primary" />
           </div>
           <div className="mt-2 text-2xl font-bold text-foreground">
             {averageScore !== "N/A" ? `${averageScore}%` : "N/A"}
@@ -407,7 +411,7 @@ export default function GradesPage() {
           <span className="text-[11px] text-muted-foreground">គិតជាមធ្យមគ្រប់មុខវិជ្ជាទាំងអស់</span>
         </div>
 
-        <div className="p-4 rounded-xl border border-border bg-card shadow-xs">
+        <div className="p-3.5 sm:p-4 rounded-xl border border-border bg-card shadow-xs">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-muted-foreground">ចំនួនមុខវិជ្ជាដែលបានវាយតម្លៃ</span>
             <Award className="h-4 w-4 text-emerald-600" />
@@ -431,49 +435,89 @@ export default function GradesPage() {
             onAction={canRecordGrade ? () => setDialogOpen(true) : undefined}
           />
         ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>មុខវិជ្ជា</TableHead>
-                <TableHead>ឆ្នាំសិក្សា</TableHead>
-                <TableHead>ឆមាស</TableHead>
-                <TableHead>ពិន្ទុទទួលបាន</TableHead>
-                <TableHead>និទ្ទេស (Grade)</TableHead>
-                <TableHead>ការវាយតម្លៃ / កំណត់សម្គាល់</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <>
+            {/* Mobile Grade Cards */}
+            <div className="block md:hidden divide-y divide-border">
               {grades.map((g) => (
-                <TableRow key={g.id}>
-                  <TableCell className="font-semibold text-foreground">
-                    <div>{g.subjectName || "មុខវិជ្ជាសិក្សា"}</div>
-                  </TableCell>
-                  <TableCell className="text-xs text-muted-foreground font-medium">
-                    {academicYears.find((ay) => ay.id === g.academicYearId)?.name || "ឆ្នាំបច្ចុប្បន្ន"}
-                  </TableCell>
-                  <TableCell className="text-xs text-muted-foreground">
-                    {g.semester === "SEMESTER_2" ? "ឆមាសទី ២" : "ឆមាសទី ១"}
-                  </TableCell>
-                  <TableCell className="font-mono font-bold text-base text-foreground">
-                    {g.score} <span className="text-xs text-muted-foreground font-normal">/ ១០០</span>
-                  </TableCell>
-                  <TableCell>
+                <div key={g.id} className="p-4 space-y-2.5">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <h4 className="font-semibold text-sm text-foreground">
+                        {g.subjectName || "មុខវិជ្ជាសិក្សា"}
+                      </h4>
+                      <p className="text-xs text-muted-foreground">
+                        {academicYears.find((ay) => ay.id === g.academicYearId)?.name || "ឆ្នាំបច្ចុប្បន្ន"} • {g.semester === "SEMESTER_2" ? "ឆមាសទី ២" : "ឆមាសទី ១"}
+                      </p>
+                    </div>
                     <Badge
                       variant="outline"
-                      className={`font-bold font-mono px-2.5 py-0.5 border ${getGradeBadgeColor(
+                      className={`font-bold font-mono px-2.5 py-0.5 border text-xs shrink-0 ${getGradeBadgeColor(
                         g.gradeLetter
                       )}`}
                     >
-                      {g.gradeLetter || "N/A"}
+                      និទ្ទេស {g.gradeLetter || "N/A"}
                     </Badge>
-                  </TableCell>
-                  <TableCell className="text-xs text-muted-foreground">
-                    {g.remarks || "-"}
-                  </TableCell>
-                </TableRow>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs pt-1 border-t border-border/50">
+                    <span className="text-muted-foreground">
+                      ពិន្ទុ: <strong className="font-mono text-sm text-foreground">{g.score}</strong> / ១០០
+                    </span>
+                    <span className="text-muted-foreground text-[11px]">
+                      {g.remarks || "-"}
+                    </span>
+                  </div>
+                </div>
               ))}
-            </TableBody>
-          </Table>
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>មុខវិជ្ជា</TableHead>
+                    <TableHead>ឆ្នាំសិក្សា</TableHead>
+                    <TableHead>ឆមាស</TableHead>
+                    <TableHead>ពិន្ទុទទួលបាន</TableHead>
+                    <TableHead>និទ្ទេស (Grade)</TableHead>
+                    <TableHead>ការវាយតម្លៃ / កំណត់សម្គាល់</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {grades.map((g) => (
+                    <TableRow key={g.id}>
+                      <TableCell className="font-semibold text-foreground">
+                        <div>{g.subjectName || "មុខវិជ្ជាសិក្សា"}</div>
+                      </TableCell>
+                      <TableCell className="text-xs text-muted-foreground font-medium">
+                        {academicYears.find((ay) => ay.id === g.academicYearId)?.name || "ឆ្នាំបច្ចុប្បន្ន"}
+                      </TableCell>
+                      <TableCell className="text-xs text-muted-foreground">
+                        {g.semester === "SEMESTER_2" ? "ឆមាសទី ២" : "ឆមាសទី ១"}
+                      </TableCell>
+                      <TableCell className="font-mono font-bold text-base text-foreground">
+                        {g.score} <span className="text-xs text-muted-foreground font-normal">/ ១០០</span>
+                      </TableCell>
+                      <TableCell>
+                        <Badge
+                          variant="outline"
+                          className={`font-bold font-mono px-2.5 py-0.5 border ${getGradeBadgeColor(
+                            g.gradeLetter
+                          )}`}
+                        >
+                          {g.gradeLetter || "N/A"}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-xs text-muted-foreground">
+                        {g.remarks || "-"}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </>
         )}
       </div>
     </div>

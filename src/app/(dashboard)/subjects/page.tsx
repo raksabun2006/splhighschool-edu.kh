@@ -107,7 +107,7 @@ export default function SubjectsPage() {
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-3 py-2">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <label className="text-xs font-medium text-foreground">កូដមុខវិជ្ជា (Code)</label>
                     <Input
@@ -146,7 +146,7 @@ export default function SubjectsPage() {
                   />
                 </div>
               </div>
-              <DialogFooter>
+              <DialogFooter className="gap-2 sm:gap-0 pt-2">
                 <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>បោះបង់</Button>
                 <Button type="submit" disabled={submitting}>
                   {submitting ? "កំពុងរក្សាទុក..." : "រក្សាទុកមុខវិជ្ជា"}
@@ -157,7 +157,7 @@ export default function SubjectsPage() {
         </Dialog>
       </PageHeader>
 
-      <div className="p-4 rounded-xl border border-border bg-card shadow-xs">
+      <div className="p-3.5 sm:p-4 rounded-xl border border-border bg-card shadow-xs">
         <div className="relative w-full max-w-md">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
@@ -180,47 +180,86 @@ export default function SubjectsPage() {
             onAction={() => setDialogOpen(true)}
           />
         ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-28">កូដមុខវិជ្ជា</TableHead>
-                <TableHead>ឈ្មោះមុខវិជ្ជា</TableHead>
-                <TableHead>ការពិពណ៌នាសង្ខេប</TableHead>
-                <TableHead>ក្រេឌីត / ម៉ោង</TableHead>
-                <TableHead>ស្ថានភាព</TableHead>
-                <TableHead className="w-16 text-right">សកម្មភាព</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <>
+            {/* Mobile Card Layout */}
+            <div className="block md:hidden divide-y divide-border">
               {subjects.map((subject) => (
-                <TableRow key={subject.id}>
-                  <TableCell className="font-mono font-bold text-primary">
-                    {subject.code}
-                  </TableCell>
-                  <TableCell className="font-semibold text-foreground">
-                    {subject.name}
-                  </TableCell>
-                  <TableCell className="text-muted-foreground text-xs">
-                    {subject.description || "-"}
-                  </TableCell>
-                  <TableCell className="font-mono text-xs">{subject.credit} ក្រេឌីត</TableCell>
-                  <TableCell>
-                    <StatusBadge status={subject.status} />
-                  </TableCell>
-                  <TableCell className="text-right">
+                <div key={subject.id} className="p-4 space-y-2.5">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs font-bold text-primary px-1.5 py-0.5 rounded bg-primary/10 border border-primary/20">
+                          {subject.code}
+                        </span>
+                        <StatusBadge status={subject.status} />
+                      </div>
+                      <h4 className="font-semibold text-sm text-foreground pt-1">
+                        {subject.name}
+                      </h4>
+                    </div>
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-8 w-8 text-destructive hover:bg-destructive/10"
+                      className="h-8 w-8 text-destructive hover:bg-destructive/10 shrink-0"
                       onClick={() => handleDeleteSubject(subject.id)}
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
-                  </TableCell>
-                </TableRow>
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs text-muted-foreground pt-1 border-t border-border/50">
+                    <span>{subject.description || "គ្មានការពិពណ៌នា"}</span>
+                    <span className="font-mono font-medium text-foreground">{subject.credit} ក្រេឌីត</span>
+                  </div>
+                </div>
               ))}
-            </TableBody>
-          </Table>
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-28">កូដមុខវិជ្ជា</TableHead>
+                    <TableHead>ឈ្មោះមុខវិជ្ជា</TableHead>
+                    <TableHead>ការពិពណ៌នាសង្ខេប</TableHead>
+                    <TableHead>ក្រេឌីត / ម៉ោង</TableHead>
+                    <TableHead>ស្ថានភាព</TableHead>
+                    <TableHead className="w-16 text-right">សកម្មភាព</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {subjects.map((subject) => (
+                    <TableRow key={subject.id}>
+                      <TableCell className="font-mono font-bold text-primary">
+                        {subject.code}
+                      </TableCell>
+                      <TableCell className="font-semibold text-foreground">
+                        {subject.name}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground text-xs">
+                        {subject.description || "-"}
+                      </TableCell>
+                      <TableCell className="font-mono text-xs">{subject.credit} ក្រេឌីត</TableCell>
+                      <TableCell>
+                        <StatusBadge status={subject.status} />
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 text-destructive hover:bg-destructive/10"
+                          onClick={() => handleDeleteSubject(subject.id)}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </>
         )}
       </div>
     </div>

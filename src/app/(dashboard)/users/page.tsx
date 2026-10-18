@@ -155,7 +155,7 @@ export default function UsersPage() {
                   />
                 </div>
               </div>
-              <DialogFooter>
+              <DialogFooter className="gap-2 sm:gap-0 pt-2">
                 <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
                   បោះបង់
                 </Button>
@@ -169,42 +169,61 @@ export default function UsersPage() {
       </PageHeader>
 
       <div className="rounded-xl border border-border bg-card shadow-xs overflow-hidden">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>ឈ្មោះពេញរបស់អ្នកប្រើប្រាស់</TableHead>
-              <TableHead>អាសយដ្ឋានអ៊ីមែល</TableHead>
-              <TableHead>តួនាទីក្នុងប្រព័ន្ធ</TableHead>
-              <TableHead>ស្ថានភាពគណនី</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {currentUser ? (
-              <TableRow key={currentUser.id}>
-                <TableCell className="font-semibold text-foreground">
-                  {currentUser.fullName}
-                </TableCell>
-                <TableCell className="text-xs text-muted-foreground font-mono">
-                  {currentUser.email}
-                </TableCell>
-                <TableCell>
-                  <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-primary/10 text-primary">
+        {currentUser ? (
+          <>
+            {/* Mobile View */}
+            <div className="block md:hidden p-4 space-y-3">
+              <div className="flex items-start justify-between gap-2">
+                <div>
+                  <h4 className="font-semibold text-sm text-foreground">{currentUser.fullName}</h4>
+                  <span className="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-primary/10 text-primary mt-1">
                     {currentUser.role}
                   </span>
-                </TableCell>
-                <TableCell>
-                  <StatusBadge status={currentUser.status} />
-                </TableCell>
-              </TableRow>
-            ) : (
-              <TableRow>
-                <TableCell colSpan={4} className="text-center py-6 text-muted-foreground text-xs">
-                  {loading ? "កំពុងទាញយកព័ត៌មានគណនី..." : "មិនមានវគ្គចូលប្រើប្រាស់សកម្មឡើយ"}
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
+                </div>
+                <StatusBadge status={currentUser.status} />
+              </div>
+              <div className="text-xs text-muted-foreground font-mono pt-1 border-t border-border/50">
+                {currentUser.email}
+              </div>
+            </div>
+
+            {/* Desktop Table */}
+            <div className="hidden md:block">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>ឈ្មោះពេញរបស់អ្នកប្រើប្រាស់</TableHead>
+                    <TableHead>អាសយដ្ឋានអ៊ីមែល</TableHead>
+                    <TableHead>តួនាទីក្នុងប្រព័ន្ធ</TableHead>
+                    <TableHead>ស្ថានភាពគណនី</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow key={currentUser.id}>
+                    <TableCell className="font-semibold text-foreground">
+                      {currentUser.fullName}
+                    </TableCell>
+                    <TableCell className="text-xs text-muted-foreground font-mono">
+                      {currentUser.email}
+                    </TableCell>
+                    <TableCell>
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-primary/10 text-primary">
+                        {currentUser.role}
+                      </span>
+                    </TableCell>
+                    <TableCell>
+                      <StatusBadge status={currentUser.status} />
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </>
+        ) : (
+          <div className="text-center py-8 text-muted-foreground text-xs">
+            {loading ? "កំពុងទាញយកព័ត៌មានគណនី..." : "មិនមានវគ្គចូលប្រើប្រាស់សកម្មឡើយ"}
+          </div>
+        )}
       </div>
     </div>
   );

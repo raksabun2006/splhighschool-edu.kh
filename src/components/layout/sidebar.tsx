@@ -16,6 +16,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { getInitials } from "@/lib/utils";
+import { SchoolLogo } from "@/components/common/school-logo";
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -47,13 +48,10 @@ export function Sidebar() {
           title="ត្រឡប់ទៅគេហទំព័រវិទ្យាល័យសំរោងពន្លៃ"
           className="flex items-center gap-3 overflow-hidden group focus:outline-none"
         >
-          <div className="relative h-10 w-10 shrink-0 rounded-xl bg-[#1b365d] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
-            <GraduationCap className="h-6 w-6" />
-            <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-[#10b981] border-2 border-card" />
-          </div>
+          <SchoolLogo size="sm" />
           {!collapsed && (
             <div className="flex flex-col min-w-0">
-              <span className="font-bold text-sm tracking-tight text-foreground truncate">
+              <span className="font-bold text-sm tracking-tight text-foreground truncate font-khmer">
                 វិទ្យាល័យសំរោងពន្លៃ
               </span>
               <span className="text-[10.5px] font-medium text-muted-foreground truncate">

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { GraduationCap, ArrowLeft, Home } from "lucide-react";
+import { SchoolLogo } from "@/components/common/school-logo";
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center bg-background text-foreground">
-      <div className="h-16 w-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-6">
-        <GraduationCap className="h-8 w-8" />
+      <div className="mb-6">
+        <SchoolLogo size="xl" />
       </div>
       <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">404</h1>
       <h2 className="text-xl font-semibold mt-2 text-foreground">Page Not Found</h2>

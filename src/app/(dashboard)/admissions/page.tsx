@@ -165,7 +165,7 @@ export default function AdmissionsPage() {
                     onChange={(e) => setFormData({ ...formData, applicantFullName: e.target.value })}
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <label className="text-xs font-medium text-foreground">ស្នើសុំចូលរៀនថ្នាក់</label>
                     <Select
@@ -192,7 +192,7 @@ export default function AdmissionsPage() {
                     </Select>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <label className="text-xs font-medium text-foreground">អ៊ីមែលសិស្ស / អាណាព្យាបាល</label>
                     <Input
@@ -221,7 +221,7 @@ export default function AdmissionsPage() {
                   />
                 </div>
               </div>
-              <DialogFooter>
+              <DialogFooter className="gap-2 sm:gap-0 pt-2">
                 <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>បោះបង់</Button>
                 <Button type="submit" disabled={submitting}>
                   {submitting ? "កំពុងដាក់ពាក្យ..." : "ដាក់ពាក្យស្នើសុំ"}
@@ -232,7 +232,7 @@ export default function AdmissionsPage() {
         </Dialog>
       </PageHeader>
 
-      <div className="p-4 rounded-xl border border-border bg-card shadow-xs flex flex-col sm:flex-row items-center gap-3">
+      <div className="p-3.5 sm:p-4 rounded-xl border border-border bg-card shadow-xs flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
         <div className="relative flex-1 w-full">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
@@ -242,7 +242,7 @@ export default function AdmissionsPage() {
             className="pl-9"
           />
         </div>
-        <div className="w-full sm:w-56">
+        <div className="w-full sm:w-56 shrink-0">
           <Select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
             <option value="all">ស្ថានភាពទាំងអស់</option>
             <option value="PENDING">រង់ចាំពិនិត្យ (PENDING)</option>
@@ -270,42 +270,27 @@ export default function AdmissionsPage() {
             }}
           />
         ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-36">លេខកូដពាក្យ</TableHead>
-                <TableHead>ឈ្មោះបេក្ខជនសិស្ស</TableHead>
-                <TableHead>ថ្នាក់ស្នើសុំ</TableHead>
-                <TableHead>អ៊ីមែលទំនាក់ទំនង</TableHead>
-                <TableHead>សាលារៀនពីមុន</TableHead>
-                <TableHead>ស្ថានភាព</TableHead>
-                {canReview && <TableHead className="w-16 text-right">សកម្មភាព</TableHead>}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <>
+            {/* Mobile Card Layout */}
+            <div className="block md:hidden divide-y divide-border">
               {displayedAdmissions.map((adm) => (
-                <TableRow key={adm.id}>
-                  <TableCell className="font-mono font-semibold text-primary">
-                    {adm.applicationNumber}
-                  </TableCell>
-                  <TableCell className="font-semibold text-foreground">
-                    {adm.applicantFullName}
-                  </TableCell>
-                  <TableCell>ថ្នាក់ទី {adm.applyingForGrade}</TableCell>
-                  <TableCell className="text-muted-foreground text-xs font-mono">
-                    {adm.applicantEmail}
-                  </TableCell>
-                  <TableCell className="text-muted-foreground text-xs">
-                    {adm.previousSchool || "-"}
-                  </TableCell>
-                  <TableCell>
-                    <StatusBadge status={adm.status} />
-                  </TableCell>
-                  {canReview && (
-                    <TableCell className="text-right">
+                <div key={adm.id} className="p-4 space-y-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="space-y-0.5 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-mono text-xs font-bold text-primary px-1.5 py-0.5 rounded bg-primary/10 border border-primary/20">
+                          {adm.applicationNumber}
+                        </span>
+                        <StatusBadge status={adm.status} />
+                      </div>
+                      <h3 className="font-semibold text-sm text-foreground break-words pt-1">
+                        {adm.applicantFullName}
+                      </h3>
+                    </div>
+                    {canReview && (
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
                             <MoreHorizontal className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -320,12 +305,88 @@ export default function AdmissionsPage() {
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
-                    </TableCell>
-                  )}
-                </TableRow>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground pt-1 border-t border-border/50">
+                    <div>
+                      <span className="block text-[11px] text-muted-foreground/70">ថ្នាក់ស្នើសុំ</span>
+                      <span className="font-medium text-foreground">ថ្នាក់ទី {adm.applyingForGrade}</span>
+                    </div>
+                    <div>
+                      <span className="block text-[11px] text-muted-foreground/70">សាលារៀនពីមុន</span>
+                      <span className="text-foreground">{adm.previousSchool || "-"}</span>
+                    </div>
+                    <div className="col-span-2 break-all">
+                      <span className="block text-[11px] text-muted-foreground/70">ទំនាក់ទំនង</span>
+                      <span>{adm.applicantEmail}</span>
+                      {adm.applicantPhone && <span className="block text-foreground">{adm.applicantPhone}</span>}
+                    </div>
+                  </div>
+                </div>
               ))}
-            </TableBody>
-          </Table>
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-36">លេខកូដពាក្យ</TableHead>
+                    <TableHead>ឈ្មោះបេក្ខជនសិស្ស</TableHead>
+                    <TableHead>ថ្នាក់ស្នើសុំ</TableHead>
+                    <TableHead>អ៊ីមែលទំនាក់ទំនង</TableHead>
+                    <TableHead>សាលារៀនពីមុន</TableHead>
+                    <TableHead>ស្ថានភាព</TableHead>
+                    {canReview && <TableHead className="w-16 text-right">សកម្មភាព</TableHead>}
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {displayedAdmissions.map((adm) => (
+                    <TableRow key={adm.id}>
+                      <TableCell className="font-mono font-semibold text-primary">
+                        {adm.applicationNumber}
+                      </TableCell>
+                      <TableCell className="font-semibold text-foreground">
+                        {adm.applicantFullName}
+                      </TableCell>
+                      <TableCell>ថ្នាក់ទី {adm.applyingForGrade}</TableCell>
+                      <TableCell className="text-muted-foreground text-xs font-mono">
+                        {adm.applicantEmail}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground text-xs">
+                        {adm.previousSchool || "-"}
+                      </TableCell>
+                      <TableCell>
+                        <StatusBadge status={adm.status} />
+                      </TableCell>
+                      {canReview && (
+                        <TableCell className="text-right">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button variant="ghost" size="icon" className="h-8 w-8">
+                                <MoreHorizontal className="h-4 w-4" />
+                              </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="right">
+                              <DropdownMenuItem onClick={() => handleReview(adm.id, "APPROVED")}>
+                                <CheckCircle className="mr-2 h-4 w-4 text-emerald-600" />
+                                <span>អនុម័តទទួលចូលរៀន</span>
+                              </DropdownMenuItem>
+                              <DropdownMenuItem onClick={() => handleReview(adm.id, "REJECTED")} className="text-destructive focus:text-destructive">
+                                <XCircle className="mr-2 h-4 w-4" />
+                                <span>បដិសេធពាក្យ</span>
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </TableCell>
+                      )}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </>
         )}
       </div>
     </div>

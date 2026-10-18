@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Client } from "pg";
 
 const SPRING_BOOT_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api/v1";
+  process.env.NEXT_PUBLIC_API_URL || "https://educorekh-api-production.up.railway.app/api/v1";
 
 export async function POST(request: Request) {
   try {

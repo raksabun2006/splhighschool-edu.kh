@@ -25,10 +25,10 @@ export default function SettingsPage() {
       </PageHeader>
 
       {/* Tabs */}
-      <div className="flex border-b border-border space-x-2">
+      <div className="flex border-b border-border space-x-2 overflow-x-auto scrollbar-none pb-0.5">
         <button
           onClick={() => setActiveTab("general")}
-          className={`pb-3 px-4 text-xs font-semibold border-b-2 transition-colors cursor-pointer ${
+          className={`pb-3 px-4 text-xs font-semibold border-b-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === "general"
               ? "border-primary text-primary"
               : "border-transparent text-muted-foreground hover:text-foreground"
@@ -38,7 +38,7 @@ export default function SettingsPage() {
         </button>
         <button
           onClick={() => setActiveTab("academic")}
-          className={`pb-3 px-4 text-xs font-semibold border-b-2 transition-colors cursor-pointer ${
+          className={`pb-3 px-4 text-xs font-semibold border-b-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === "academic"
               ? "border-primary text-primary"
               : "border-transparent text-muted-foreground hover:text-foreground"
@@ -48,7 +48,7 @@ export default function SettingsPage() {
         </button>
         <button
           onClick={() => setActiveTab("notifications")}
-          className={`pb-3 px-4 text-xs font-semibold border-b-2 transition-colors cursor-pointer ${
+          className={`pb-3 px-4 text-xs font-semibold border-b-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === "notifications"
               ? "border-primary text-primary"
               : "border-transparent text-muted-foreground hover:text-foreground"
@@ -58,7 +58,7 @@ export default function SettingsPage() {
         </button>
         <button
           onClick={() => setActiveTab("security")}
-          className={`pb-3 px-4 text-xs font-semibold border-b-2 transition-colors cursor-pointer ${
+          className={`pb-3 px-4 text-xs font-semibold border-b-2 transition-colors cursor-pointer whitespace-nowrap shrink-0 ${
             activeTab === "security"
               ? "border-primary text-primary"
               : "border-transparent text-muted-foreground hover:text-foreground"

@@ -127,7 +127,7 @@ export default function ClassesPage() {
                   </DialogDescription>
                 </DialogHeader>
                 <div className="space-y-3 py-2">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
                       <label className="text-xs font-medium text-foreground">ឈ្មោះថ្នាក់រៀន</label>
                       <Input
@@ -152,7 +152,7 @@ export default function ClassesPage() {
                       </Select>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
                       <label className="text-xs font-medium text-foreground">ចំណុះសិស្សអតិបរមា</label>
                       <Input
@@ -188,7 +188,7 @@ export default function ClassesPage() {
                     </Select>
                   </div>
                 </div>
-                <DialogFooter>
+                <DialogFooter className="gap-2 sm:gap-0 pt-2">
                   <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
                     បោះបង់
                   </Button>
@@ -217,34 +217,68 @@ export default function ClassesPage() {
             onAction={canCreateClass ? () => setDialogOpen(true) : undefined}
           />
         ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-28">ថ្នាក់រៀន</TableHead>
-                <TableHead>កម្រិតថ្នាក់</TableHead>
-                <TableHead>បន្ទប់សិក្សា</TableHead>
-                <TableHead>គ្រូបន្ទុកថ្នាក់</TableHead>
-                <TableHead>ចំណុះសិស្ស</TableHead>
-                <TableHead>ស្ថានភាព</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <>
+            {/* Mobile Cards */}
+            <div className="block md:hidden divide-y divide-border">
               {classes.map((c) => (
-                <TableRow key={c.id}>
-                  <TableCell className="font-bold text-foreground text-base">{c.name}</TableCell>
-                  <TableCell>ថ្នាក់ទី {c.gradeLevel}</TableCell>
-                  <TableCell className="text-muted-foreground text-xs">{c.room || "-"}</TableCell>
-                  <TableCell className="font-medium text-foreground">
-                    {c.classTeacherName || "មិនទាន់ចាត់តាំង"}
-                  </TableCell>
-                  <TableCell className="font-mono text-xs">{c.capacity} នាក់</TableCell>
-                  <TableCell>
+                <div key={c.id} className="p-4 space-y-2.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-base text-foreground">
+                        {c.name}
+                      </span>
+                      <span className="text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded">
+                        ថ្នាក់ទី {c.gradeLevel}
+                      </span>
+                    </div>
                     <StatusBadge status={c.status} />
-                  </TableCell>
-                </TableRow>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground pt-1 border-t border-border/50">
+                    <div>
+                      <span className="block text-[11px] text-muted-foreground/70">គ្រូបន្ទុក</span>
+                      <span className="font-medium text-foreground">{c.classTeacherName || "មិនទាន់ចាត់តាំង"}</span>
+                    </div>
+                    <div>
+                      <span className="block text-[11px] text-muted-foreground/70">បន្ទប់ & ចំណុះ</span>
+                      <span className="text-foreground">{c.room || "-"} ({c.capacity} នាក់)</span>
+                    </div>
+                  </div>
+                </div>
               ))}
-            </TableBody>
-          </Table>
+            </div>
+
+            {/* Desktop Table */}
+            <div className="hidden md:block">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-28">ថ្នាក់រៀន</TableHead>
+                    <TableHead>កម្រិតថ្នាក់</TableHead>
+                    <TableHead>បន្ទប់សិក្សា</TableHead>
+                    <TableHead>គ្រូបន្ទុកថ្នាក់</TableHead>
+                    <TableHead>ចំណុះសិស្ស</TableHead>
+                    <TableHead>ស្ថានភាព</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {classes.map((c) => (
+                    <TableRow key={c.id}>
+                      <TableCell className="font-bold text-foreground text-base">{c.name}</TableCell>
+                      <TableCell>ថ្នាក់ទី {c.gradeLevel}</TableCell>
+                      <TableCell className="text-muted-foreground text-xs">{c.room || "-"}</TableCell>
+                      <TableCell className="font-medium text-foreground">
+                        {c.classTeacherName || "មិនទាន់ចាត់តាំង"}
+                      </TableCell>
+                      <TableCell className="font-mono text-xs">{c.capacity} នាក់</TableCell>
+                      <TableCell>
+                        <StatusBadge status={c.status} />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </>
         )}
       </div>
     </div>

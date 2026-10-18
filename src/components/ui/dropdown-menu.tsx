@@ -72,7 +72,7 @@ export function DropdownMenuContent({
   return (
     <div
       className={cn(
-        "absolute z-50 mt-2 min-w-[10rem] overflow-hidden rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-lg animate-in fade-in-80 zoom-in-95",
+        "absolute z-50 mt-2 min-w-[10rem] max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-border bg-popover p-1.5 text-popover-foreground shadow-lg animate-in fade-in-80 zoom-in-95",
         isRightAligned ? "right-0" : "left-0",
         className
       )}
@@ -101,7 +101,7 @@ export function DropdownMenuItem({
         context?.setOpen(false);
       }}
       className={cn(
-        "relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 text-left",
+        "relative flex w-full min-h-[38px] cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 text-xs sm:text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 text-left",
         className
       )}
     >

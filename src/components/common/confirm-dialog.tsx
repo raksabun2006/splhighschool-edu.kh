@@ -39,10 +39,11 @@ export function ConfirmDialog({
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
-        <DialogFooter>
+        <DialogFooter className="flex-col-reverse sm:flex-row gap-2 sm:gap-0">
           <Button
             variant="outline"
             onClick={() => onOpenChange(false)}
+            className="w-full sm:w-auto"
           >
             {cancelLabel}
           </Button>
@@ -52,6 +53,7 @@ export function ConfirmDialog({
               onConfirm();
               onOpenChange(false);
             }}
+            className="w-full sm:w-auto"
           >
             {confirmLabel}
           </Button>

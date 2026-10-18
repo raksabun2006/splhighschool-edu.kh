@@ -60,7 +60,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           )}
         >
           <Navbar />
-          <main className="flex-1 p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto animate-in fade-in-50 duration-200">
+          <main className="flex-1 p-3.5 sm:p-5 md:p-6 lg:p-8 max-w-7xl w-full mx-auto min-w-0 overflow-x-hidden animate-in fade-in-50 duration-200">
             <ProtectedRoute>
               <RoleRouteGuard>{children}</RoleRouteGuard>
             </ProtectedRoute>

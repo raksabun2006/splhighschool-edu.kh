@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import { SchoolLogo } from "@/components/common/school-logo";
 import {
   GraduationCap,
   ArrowRight,
@@ -26,6 +28,9 @@ import {
   Trophy,
   Sparkles,
   Compass,
+  Menu,
+  X,
+  LogIn,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -39,6 +44,7 @@ import { useAuth } from "@/features/auth";
 
 export default function HomePage() {
   const { isAuthenticated, user, role } = useAuth();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [stats, setStats] = useState({
     students: 0,
     teachers: 0,
@@ -178,13 +184,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
           {/* School Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group focus:outline-none">
-            <div className="relative h-11 w-11 rounded-xl bg-[#1b365d] flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
-              <GraduationCap className="h-6 w-6" />
-              <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-[#10b981] border-2 border-card" />
-            </div>
+            <SchoolLogo size="md" />
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-extrabold text-lg sm:text-xl tracking-tight text-[#1b365d] dark:text-blue-400">
+                <span className="font-extrabold text-lg sm:text-xl tracking-tight text-[#1b365d] dark:text-blue-400 font-khmer">
                   វិទ្យាល័យសំរោងពន្លៃ
                 </span>
               </div>
@@ -241,12 +244,12 @@ export default function HomePage() {
           </nav>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2 sm:gap-2.5">
             {isAuthenticated ? (
               <Link href="/dashboard">
                 <Button
                   size="sm"
-                  className="bg-[#1b365d] hover:bg-[#142845] text-white gap-2 font-semibold shadow-xs"
+                  className="bg-[#1b365d] hover:bg-[#142845] text-white gap-1.5 sm:gap-2 font-semibold shadow-xs text-xs sm:text-sm px-2.5 sm:px-3.5"
                 >
                   <LayoutDashboard className="h-4 w-4" />
                   <span>
@@ -256,7 +259,7 @@ export default function HomePage() {
                       ? "ផ្ទាំងគ្រូបង្រៀន"
                       : "ផ្ទាំងគ្រប់គ្រង"}
                   </span>
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 hidden sm:inline" />
                 </Button>
               </Link>
             ) : (
@@ -265,7 +268,7 @@ export default function HomePage() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="font-medium text-muted-foreground hover:text-foreground"
+                    className="font-medium text-muted-foreground hover:text-foreground text-xs sm:text-sm px-2 sm:px-3"
                   >
                     ចូលប្រព័ន្ធ
                   </Button>
@@ -273,15 +276,76 @@ export default function HomePage() {
                 <Link href="/apply">
                   <Button
                     size="sm"
-                    className="bg-[#10b981] hover:bg-[#059669] text-white shadow-xs font-semibold px-4"
+                    className="bg-[#10b981] hover:bg-[#059669] text-white shadow-xs font-semibold px-3 sm:px-4 text-xs sm:text-sm"
                   >
                     ព័ត៌មានចូលរៀន
                   </Button>
                 </Link>
               </>
             )}
+
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-lg border border-border text-muted-foreground hover:bg-muted hover:text-foreground cursor-pointer shrink-0"
+              aria-label={mobileMenuOpen ? "បិទម៉ឺនុយ" : "បើកម៉ឺនុយ"}
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Dropdown */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden border-b border-border bg-card px-4 py-4 space-y-2 animate-in slide-in-from-top-2 duration-150 shadow-xl">
+            <div className="space-y-1">
+              {[
+                { href: "/", label: "ទំព័រដើម" },
+                { href: "/about", label: "អំពីសាលា" },
+                { href: "/programs", label: "កម្មវិធីសិក្សា" },
+                { href: "/apply", label: "ចុះឈ្មោះចូលរៀន" },
+                { href: "/announcements", label: "សេចក្តីជូនដំណឹង" },
+                { href: "/faculty", label: "លោកគ្រូ-អ្នកគ្រូ" },
+                { href: "/contact", label: "ទំនាក់ទំនង" },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            <div className="pt-3 border-t border-border flex flex-col gap-2">
+              <Link
+                href="/apply"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full"
+              >
+                <Button className="w-full bg-[#10b981] hover:bg-[#059669] text-white justify-center gap-2">
+                  <span>ចុះឈ្មោះចូលរៀនឥឡូវនេះ</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <div className="grid grid-cols-2 gap-2">
+                <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="outline" className="w-full text-xs gap-1.5 justify-center">
+                    <LogIn className="h-3.5 w-3.5" />
+                    <span>ចូលប្រព័ន្ធ</span>
+                  </Button>
+                </Link>
+                <Link href="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="secondary" className="w-full text-xs gap-1.5 justify-center">
+                    <LayoutDashboard className="h-3.5 w-3.5" />
+                    <span>ផ្ទាំងគ្រប់គ្រង</span>
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -367,27 +431,56 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Interactive Portal Snapshot Card */}
+            {/* Right Interactive Portal Snapshot Card with Real School Gate */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-2xl bg-card border border-border shadow-xl p-6 sm:p-7 overflow-hidden">
+              <div className="relative rounded-2xl bg-card border border-border shadow-xl p-5 sm:p-6 overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#1b365d] via-[#10b981] to-[#1b365d]" />
 
-                <div className="flex items-center justify-between pb-5 border-b border-border">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-xl bg-[#1b365d]/10 text-[#1b365d] dark:text-blue-400 flex items-center justify-center font-bold text-sm">
+                {/* Gate Photo Showcase Banner */}
+                <div className="relative h-44 sm:h-48 w-full rounded-xl overflow-hidden mb-5 border border-border/80 shadow-inner group">
+                  <Image
+                    src="/images/samrong-ponley-gate.jpg"
+                    alt="ខ្លោងទ្វារ និងបរិវេណវិទ្យាល័យសំរោងពន្លៃ"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 450px"
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                  <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <SchoolLogo size="xs" />
+                      <div>
+                        <div className="text-white text-xs font-bold font-khmer leading-tight drop-shadow-md">
+                          វិទ្យាល័យ សំរោងពន្លៃ
+                        </div>
+                        <div className="text-[10px] text-emerald-300 font-medium">
+                          ច្រកទ្វារ និងបរិវេណសាលាផ្ទាល់
+                        </div>
+                      </div>
+                    </div>
+                    <Badge className="bg-emerald-500 text-white text-[10px] shadow-sm">
+                      ទីតាំងពិតប្រាកដ
+                    </Badge>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pb-4 border-b border-border">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-9 w-9 rounded-xl bg-[#1b365d]/10 text-[#1b365d] dark:text-blue-400 flex items-center justify-center font-bold text-xs">
                       SPHS
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-foreground">
+                      <div className="text-xs sm:text-sm font-bold text-foreground">
                         ទិន្នន័យប្រព័ន្ធគ្រប់គ្រងសាលា
                       </div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-[11px] text-muted-foreground">
                         ឆ្នាំសិក្សា ២០២៥ - ២០២៦
                       </div>
                     </div>
                   </div>
-                  <Badge className="bg-[#10b981] text-white hover:bg-[#059669]">
-                    ប្រព័ន្ធផ្សាយបន្តផ្ទាល់
+                  <Badge className="bg-[#10b981] text-white hover:bg-[#059669] text-xs">
+                    Live Railway API
                   </Badge>
                 </div>
 
@@ -968,12 +1061,10 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-border">
             {/* Brand Column */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2.5">
-                <div className="h-9 w-9 rounded-xl bg-[#1b365d] flex items-center justify-center text-white">
-                  <GraduationCap className="h-5 w-5" />
-                </div>
+              <div className="flex items-center gap-3">
+                <SchoolLogo size="sm" />
                 <div>
-                  <div className="font-bold text-base text-[#1b365d] dark:text-blue-400">
+                  <div className="font-bold text-base text-[#1b365d] dark:text-blue-400 font-khmer">
                     វិទ្យាល័យសំរោងពន្លៃ
                   </div>
                   <div className="text-[11px] text-muted-foreground">

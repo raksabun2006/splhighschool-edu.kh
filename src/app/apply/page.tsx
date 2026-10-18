@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { SchoolLogo } from "@/components/common/school-logo";
 import {
   GraduationCap,
   ArrowRight,
@@ -124,12 +125,9 @@ export default function ApplyPage() {
       <header className="border-b border-border/80 bg-card/80 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group focus:outline-none">
-            <div className="relative h-10 w-10 rounded-xl bg-[#1b365d] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
-              <GraduationCap className="h-6 w-6" />
-              <span className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-[#10b981] border-2 border-card" />
-            </div>
+            <SchoolLogo size="md" />
             <div>
-              <div className="font-bold text-base tracking-tight text-foreground flex items-center gap-1.5 leading-none">
+              <div className="font-bold text-base tracking-tight text-foreground flex items-center gap-1.5 leading-none font-khmer">
                 <span>វិទ្យាល័យសំរោងពន្លៃ</span>
               </div>
               <span className="text-[11px] font-medium text-muted-foreground">
@@ -138,15 +136,15 @@ export default function ApplyPage() {
             </div>
           </Link>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <Link href="/">
-              <Button variant="ghost" size="sm" className="gap-1 text-xs">
+              <Button variant="ghost" size="sm" className="gap-1 text-xs px-2 sm:px-3">
                 <ArrowLeft className="h-3.5 w-3.5" />
-                <span>ត្រឡប់ទៅគេហទំព័រ</span>
+                <span className="hidden sm:inline">ត្រឡប់ទៅគេហទំព័រ</span>
               </Button>
             </Link>
             <Link href="/login">
-              <Button size="sm" variant="outline" className="text-xs">
+              <Button size="sm" variant="outline" className="text-xs px-2.5 sm:px-3">
                 ចូលប្រព័ន្ធ
               </Button>
             </Link>

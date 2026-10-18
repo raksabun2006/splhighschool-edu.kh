@@ -144,7 +144,7 @@ export default function StudentsPage() {
                 </DialogDescription>
               </DialogHeader>
               <div className="space-y-3 py-2">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <label className="text-xs font-medium text-foreground">អត្តលេខសិស្ស *</label>
                     <Input
@@ -165,7 +165,7 @@ export default function StudentsPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <label className="text-xs font-medium text-foreground">ភេទ *</label>
                     <Select
@@ -202,7 +202,7 @@ export default function StudentsPage() {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <label className="text-xs font-medium text-foreground">លេខទូរស័ព្ទ</label>
                     <Input
@@ -221,11 +221,11 @@ export default function StudentsPage() {
                   </div>
                 </div>
               </div>
-              <DialogFooter>
+              <DialogFooter className="gap-2 sm:gap-0 pt-2">
                 <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>
                   បោះបង់
                 </Button>
-                <Button type="submit" disabled={submitting} className="bg-[#1b365d] text-white">
+                <Button type="submit" disabled={submitting} className="bg-primary hover:bg-primary/90 text-primary-foreground">
                   {submitting ? "កំពុងរក្សាទុក..." : "រក្សាទុកទិន្នន័យសិស្ស"}
                 </Button>
               </DialogFooter>
@@ -235,7 +235,7 @@ export default function StudentsPage() {
       </PageHeader>
 
       {/* Filter Bar */}
-      <div className="p-4 rounded-xl border border-border bg-card shadow-xs flex flex-col sm:flex-row items-center gap-3">
+      <div className="p-3.5 sm:p-4 rounded-xl border border-border bg-card shadow-xs flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
         <div className="relative flex-1 w-full">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
@@ -246,7 +246,7 @@ export default function StudentsPage() {
           />
         </div>
 
-        <div className="w-full sm:w-48">
+        <div className="w-full sm:w-56 shrink-0">
           <Select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
@@ -261,7 +261,7 @@ export default function StudentsPage() {
         </div>
       </div>
 
-      {/* Data Table */}
+      {/* Data Section */}
       <div className="rounded-xl border border-border bg-card shadow-xs overflow-hidden">
         {loading ? (
           <TableSkeleton rows={5} cols={6} />
@@ -274,68 +274,130 @@ export default function StudentsPage() {
           />
         ) : (
           <>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-32">លេខសម្គាល់</TableHead>
-                  <TableHead>ឈ្មោះពេញ</TableHead>
-                  <TableHead>ភេទ</TableHead>
-                  <TableHead>ថ្នាក់</TableHead>
-                  <TableHead>ទំនាក់ទំនង</TableHead>
-                  <TableHead>ស្ថានភាព</TableHead>
-                  <TableHead className="w-16 text-right">សកម្មភាព</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {students.map((student) => (
-                  <TableRow key={student.id}>
-                    <TableCell className="font-mono font-semibold text-primary">
-                      {student.studentCode}
-                    </TableCell>
-                    <TableCell className="font-medium text-foreground">
-                      {student.fullName}
-                    </TableCell>
-                    <TableCell className="text-muted-foreground text-xs">
-                      {student.sex === "MALE" ? "ប្រុស" : student.sex === "FEMALE" ? "ស្រី" : "ផ្សេងៗ"}
-                    </TableCell>
-                    <TableCell className="text-foreground text-xs font-semibold">
-                      {student.className || "មិនទាន់ចាត់ថ្នាក់"}
-                    </TableCell>
-                    <TableCell className="text-muted-foreground text-xs">
-                      <div>{student.email}</div>
-                      <div className="text-[11px]">{student.phone}</div>
-                    </TableCell>
-                    <TableCell>
-                      <StatusBadge status={student.status} />
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8">
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="right">
-                          <DropdownMenuItem onClick={() => {}}>
-                            <Eye className="mr-2 h-4 w-4" />
-                            <span>មើលប្រវត្តិរូប</span>
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem
-                            onClick={() => handleDeleteStudent(student.id)}
-                            className="text-destructive focus:bg-destructive/10"
-                          >
-                            <Trash2 className="mr-2 h-4 w-4" />
-                            <span>លុបទិន្នន័យ</span>
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
+            {/* Mobile Card Layout */}
+            <div className="block md:hidden divide-y divide-border">
+              {students.map((student) => (
+                <div key={student.id} className="p-4 space-y-3">
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="space-y-0.5 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-mono text-xs font-bold text-primary px-1.5 py-0.5 rounded bg-primary/10 border border-primary/20">
+                          {student.studentCode}
+                        </span>
+                        <StatusBadge status={student.status} />
+                      </div>
+                      <h3 className="font-semibold text-sm text-foreground break-words pt-1">
+                        {student.fullName}
+                      </h3>
+                    </div>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon" className="h-8 w-8 shrink-0">
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="right">
+                        <DropdownMenuItem onClick={() => {}}>
+                          <Eye className="mr-2 h-4 w-4" />
+                          <span>មើលប្រវត្តិរូប</span>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                          onClick={() => handleDeleteStudent(student.id)}
+                          className="text-destructive focus:bg-destructive/10"
+                        >
+                          <Trash2 className="mr-2 h-4 w-4" />
+                          <span>លុបទិន្នន័យ</span>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground pt-1 border-t border-border/50">
+                    <div>
+                      <span className="block text-[11px] text-muted-foreground/70">ថ្នាក់រៀន</span>
+                      <span className="font-medium text-foreground">{student.className || "មិនទាន់ចាត់ថ្នាក់"}</span>
+                    </div>
+                    <div>
+                      <span className="block text-[11px] text-muted-foreground/70">ភេទ</span>
+                      <span>{student.sex === "MALE" ? "ប្រុស" : student.sex === "FEMALE" ? "ស្រី" : "ផ្សេងៗ"}</span>
+                    </div>
+                    <div className="col-span-2 break-all">
+                      <span className="block text-[11px] text-muted-foreground/70">ទំនាក់ទំនង</span>
+                      <span>{student.email}</span>
+                      {student.phone && <span className="block text-foreground">{student.phone}</span>}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-32">លេខសម្គាល់</TableHead>
+                    <TableHead>ឈ្មោះពេញ</TableHead>
+                    <TableHead>ភេទ</TableHead>
+                    <TableHead>ថ្នាក់</TableHead>
+                    <TableHead>ទំនាក់ទំនង</TableHead>
+                    <TableHead>ស្ថានភាព</TableHead>
+                    <TableHead className="w-16 text-right">សកម្មភាព</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            <div className="p-4 border-t border-border flex items-center justify-between text-xs text-muted-foreground">
+                </TableHeader>
+                <TableBody>
+                  {students.map((student) => (
+                    <TableRow key={student.id}>
+                      <TableCell className="font-mono font-semibold text-primary">
+                        {student.studentCode}
+                      </TableCell>
+                      <TableCell className="font-medium text-foreground">
+                        {student.fullName}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground text-xs">
+                        {student.sex === "MALE" ? "ប្រុស" : student.sex === "FEMALE" ? "ស្រី" : "ផ្សេងៗ"}
+                      </TableCell>
+                      <TableCell className="text-foreground text-xs font-semibold">
+                        {student.className || "មិនទាន់ចាត់ថ្នាក់"}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground text-xs">
+                        <div>{student.email}</div>
+                        <div className="text-[11px]">{student.phone}</div>
+                      </TableCell>
+                      <TableCell>
+                        <StatusBadge status={student.status} />
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="right">
+                            <DropdownMenuItem onClick={() => {}}>
+                              <Eye className="mr-2 h-4 w-4" />
+                              <span>មើលប្រវត្តិរូប</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem
+                              onClick={() => handleDeleteStudent(student.id)}
+                              className="text-destructive focus:bg-destructive/10"
+                            >
+                              <Trash2 className="mr-2 h-4 w-4" />
+                              <span>លុបទិន្នន័យ</span>
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+
+            <div className="p-3 sm:p-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
               <span>Showing {students.length} of {totalElements} students from Spring Boot API</span>
             </div>
           </>

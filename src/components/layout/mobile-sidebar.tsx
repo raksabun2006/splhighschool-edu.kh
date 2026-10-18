@@ -10,6 +10,7 @@ import { GraduationCap, X, Globe, ArrowUpRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { getInitials } from "@/lib/utils";
+import { SchoolLogo } from "@/components/common/school-logo";
 
 export function MobileSidebar() {
   const pathname = usePathname();
@@ -44,40 +45,37 @@ export function MobileSidebar() {
       />
 
       {/* Drawer */}
-      <div className="fixed inset-y-0 left-0 w-72 bg-card border-r border-border p-4 flex flex-col shadow-2xl animate-in slide-in-from-left duration-200">
+      <div className="fixed inset-y-0 left-0 w-[280px] max-w-[calc(100vw-3rem)] bg-card border-r border-border p-4 flex flex-col shadow-2xl animate-in slide-in-from-left duration-200">
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-border">
           <Link
             href="/"
             title="ត្រឡប់ទៅគេហទំព័រវិទ្យាល័យសំរោងពន្លៃ"
             onClick={() => setMobileOpen(false)}
-            className="flex items-center gap-3"
+            className="flex items-center gap-2.5 min-w-0"
           >
-            <div className="relative h-9 w-9 rounded-xl bg-[#1b365d] flex items-center justify-center text-white shadow-sm">
-              <GraduationCap className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-[#10b981] border-2 border-card" />
-            </div>
-            <div>
-              <div className="font-bold text-sm text-foreground flex items-center gap-1.5">
-                <span>វិទ្យាល័យសំរោងពន្លៃ</span>
+            <SchoolLogo size="xs" />
+            <div className="min-w-0">
+              <div className="font-bold text-sm text-foreground truncate font-khmer">
+                វិទ្យាល័យសំរោងពន្លៃ
               </div>
-              <div className="text-[11px] text-muted-foreground">Samrong Ponley High School</div>
+              <div className="text-[10px] text-muted-foreground truncate">Samrong Ponley High School</div>
             </div>
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
-            className="p-1.5 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground"
-            aria-label="Close menu"
+            className="p-2 rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground shrink-0 min-h-[40px] min-w-[40px] flex items-center justify-center cursor-pointer"
+            aria-label="បិទម៉ឺនុយ"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
         {/* Navigation */}
-        <div className="flex-1 overflow-y-auto py-4 space-y-6">
+        <div className="flex-1 overflow-y-auto py-3 space-y-5 scrollbar-thin">
           {mounted && navGroups.map((group, groupIdx) => (
             <div key={groupIdx} className="space-y-1">
-              <h4 className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+              <h4 className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5">
                 {group.group}
               </h4>
               <div className="space-y-1">
@@ -93,7 +91,7 @@ export function MobileSidebar() {
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
                       className={cn(
-                        "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                        "flex items-center gap-3 px-3 py-2.5 min-h-[44px] rounded-xl text-sm font-medium transition-colors",
                         isActive
                           ? "bg-primary text-primary-foreground font-semibold shadow-xs"
                           : "text-muted-foreground hover:bg-muted hover:text-foreground"

@@ -110,7 +110,7 @@ export default function AcademicYearsPage() {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <label className="text-xs font-medium text-foreground">កាលបរិច្ឆេទចាប់ផ្តើម</label>
                     <Input
@@ -131,7 +131,7 @@ export default function AcademicYearsPage() {
                   </div>
                 </div>
               </div>
-              <DialogFooter>
+              <DialogFooter className="gap-2 sm:gap-0 pt-2">
                 <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>បោះបង់</Button>
                 <Button type="submit" disabled={submitting}>
                   {submitting ? "កំពុងបង្កើត..." : "រក្សាទុកឆ្នាំសិក្សា"}
@@ -153,41 +153,73 @@ export default function AcademicYearsPage() {
             onAction={() => setDialogOpen(true)}
           />
         ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>ឈ្មោះឆ្នាំសិក្សា</TableHead>
-                <TableHead>ថ្ងៃចាប់ផ្តើម</TableHead>
-                <TableHead>ថ្ងៃបញ្ចប់</TableHead>
-                <TableHead>ស្ថានភាពប្រតិបត្តិការ</TableHead>
-                <TableHead className="w-36 text-right">សកម្មភាព</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <>
+            {/* Mobile Card Layout */}
+            <div className="block md:hidden divide-y divide-border">
               {years.map((ay) => (
-                <TableRow key={ay.id}>
-                  <TableCell className="font-semibold text-foreground">{ay.name}</TableCell>
-                  <TableCell className="text-muted-foreground text-xs">{ay.startDate}</TableCell>
-                  <TableCell className="text-muted-foreground text-xs">{ay.endDate}</TableCell>
-                  <TableCell>
+                <div key={ay.id} className="p-4 space-y-2.5">
+                  <div className="flex items-center justify-between gap-2">
+                    <h4 className="font-semibold text-sm text-foreground">{ay.name}</h4>
                     <StatusBadge status={ay.status} />
-                  </TableCell>
-                  <TableCell className="text-right">
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground pt-1 border-t border-border/50">
+                    <div>
+                      <span>{ay.startDate}</span> <span className="text-muted-foreground/60">→</span> <span>{ay.endDate}</span>
+                    </div>
                     {ay.status !== "ACTIVE" && (
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => handleActivate(ay.id)}
-                        className="text-xs border-primary/40 text-primary hover:bg-primary/10"
+                        className="text-xs h-7 border-primary/40 text-primary hover:bg-primary/10"
                       >
                         កំណត់ជាឆ្នាំសកម្ម
                       </Button>
                     )}
-                  </TableCell>
-                </TableRow>
+                  </div>
+                </div>
               ))}
-            </TableBody>
-          </Table>
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>ឈ្មោះឆ្នាំសិក្សា</TableHead>
+                    <TableHead>ថ្ងៃចាប់ផ្តើម</TableHead>
+                    <TableHead>ថ្ងៃបញ្ចប់</TableHead>
+                    <TableHead>ស្ថានភាពប្រតិបត្តិការ</TableHead>
+                    <TableHead className="w-36 text-right">សកម្មភាព</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {years.map((ay) => (
+                    <TableRow key={ay.id}>
+                      <TableCell className="font-semibold text-foreground">{ay.name}</TableCell>
+                      <TableCell className="text-muted-foreground text-xs">{ay.startDate}</TableCell>
+                      <TableCell className="text-muted-foreground text-xs">{ay.endDate}</TableCell>
+                      <TableCell>
+                        <StatusBadge status={ay.status} />
+                      </TableCell>
+                      <TableCell className="text-right">
+                        {ay.status !== "ACTIVE" && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleActivate(ay.id)}
+                            className="text-xs border-primary/40 text-primary hover:bg-primary/10"
+                          >
+                            កំណត់ជាឆ្នាំសកម្ម
+                          </Button>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </>
         )}
       </div>
     </div>

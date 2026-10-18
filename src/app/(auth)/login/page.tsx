@@ -4,6 +4,7 @@ import React, { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { GraduationCap, ArrowRight, Lock, Mail, AlertCircle, Loader2, Eye, EyeOff } from "lucide-react";
+import { SchoolLogo } from "@/components/common/school-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
@@ -122,7 +123,7 @@ function LoginForm() {
             </div>
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full gap-2 h-10 mt-2 bg-[#253c95] hover:bg-[#1a2b6b] text-white">
+          <Button type="submit" disabled={loading} className="w-full gap-2 h-10 mt-2">
             {loading ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -157,27 +158,29 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-muted/30">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-muted/40">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
-          <div className="relative inline-flex h-12 w-12 rounded-2xl bg-[#253c95] items-center justify-center text-white shadow-md mb-2">
-            <GraduationCap className="h-7 w-7" />
-            <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-[#e53935] border-2 border-card" />
+          <div className="flex justify-center mb-2">
+            <SchoolLogo size="xl" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center justify-center gap-2">
             <span>EduCoreKH</span>
-            <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-[#e53935] text-white">
-              ISTAD
+            <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
+              SPL
             </span>
           </h1>
-          <p className="text-xs text-muted-foreground">
-            Institute of Science and Technology Advanced Development
+          <p className="text-xs text-muted-foreground font-medium">
+            Samrong Ponley High School Management System
+          </p>
+          <p className="text-[11px] text-muted-foreground/80 font-khmer">
+            ប្រព័ន្ធគ្រប់គ្រងសាលារៀន វិទ្យាល័យ សំរោងពន្លៃ
           </p>
         </div>
 
         <Suspense fallback={
           <div className="p-8 text-center">
-            <Loader2 className="h-8 w-8 animate-spin mx-auto text-[#253c95]" />
+            <Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" />
           </div>
         }>
           <LoginForm />

@@ -126,7 +126,7 @@ export default function ParentsPage() {
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="space-y-1">
                     <label className="text-xs font-medium text-foreground">អ៊ីមែល (Email)</label>
                     <Input
@@ -170,7 +170,7 @@ export default function ParentsPage() {
                   />
                 </div>
               </div>
-              <DialogFooter>
+              <DialogFooter className="gap-2 sm:gap-0 pt-2">
                 <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>បោះបង់</Button>
                 <Button type="submit" disabled={submitting}>
                   {submitting ? "កំពុងរក្សាទុក..." : "រក្សាទុកព័ត៌មាន"}
@@ -181,7 +181,7 @@ export default function ParentsPage() {
         </Dialog>
       </PageHeader>
 
-      <div className="p-4 rounded-xl border border-border bg-card shadow-xs">
+      <div className="p-3.5 sm:p-4 rounded-xl border border-border bg-card shadow-xs">
         <div className="relative w-full max-w-md">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
@@ -204,43 +204,83 @@ export default function ParentsPage() {
             onAction={() => setDialogOpen(true)}
           />
         ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>ឈ្មោះអាណាព្យាបាល & មុខរបរ</TableHead>
-                <TableHead>កូនៗដែលកំពុងសិក្សា</TableHead>
-                <TableHead>អ៊ីមែល</TableHead>
-                <TableHead>លេខទូរស័ព្ទ</TableHead>
-                <TableHead>ស្ថានភាព</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <>
+            {/* Mobile Card Layout */}
+            <div className="block md:hidden divide-y divide-border">
               {parents.map((parent) => (
-                <TableRow key={parent.id}>
-                  <TableCell className="font-medium text-foreground">
-                    <div>{parent.fullName}</div>
-                    <div className="text-[11px] text-muted-foreground">{parent.occupation || "-"}</div>
-                  </TableCell>
-                  <TableCell>
+                <div key={parent.id} className="p-4 space-y-2.5">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <h4 className="font-semibold text-sm text-foreground">
+                        {parent.fullName}
+                      </h4>
+                      <p className="text-xs text-muted-foreground">{parent.occupation || "គ្មានព័ត៌មានមុខរបរ"}</p>
+                    </div>
+                    <StatusBadge status={parent.status} />
+                  </div>
+
+                  <div className="space-y-1 text-xs pt-1 border-t border-border/50">
+                    <span className="block text-[11px] text-muted-foreground/70">កូនសិស្សក្នុងបន្ទុក</span>
                     {parent.children && parent.children.length > 0 ? (
                       parent.children.map((c) => (
-                        <div key={c.id} className="text-xs font-semibold text-foreground">
+                        <div key={c.id} className="font-semibold text-foreground">
                           {c.fullName} ({c.studentCode})
                         </div>
                       ))
                     ) : (
-                      <span className="text-xs text-muted-foreground">មិនទាន់ភ្ជាប់សិស្ស</span>
+                      <span className="text-muted-foreground">មិនទាន់ភ្ជាប់សិស្ស</span>
                     )}
-                  </TableCell>
-                  <TableCell className="text-muted-foreground text-xs font-mono">{parent.email}</TableCell>
-                  <TableCell className="font-mono text-xs text-muted-foreground">{parent.phone || "-"}</TableCell>
-                  <TableCell>
-                    <StatusBadge status={parent.status} />
-                  </TableCell>
-                </TableRow>
+                  </div>
+
+                  <div className="text-xs text-muted-foreground pt-1 border-t border-border/50 break-all">
+                    <span>{parent.email}</span>
+                    {parent.phone && <span className="block text-foreground font-mono">{parent.phone}</span>}
+                  </div>
+                </div>
               ))}
-            </TableBody>
-          </Table>
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>ឈ្មោះអាណាព្យាបាល & មុខរបរ</TableHead>
+                    <TableHead>កូនៗដែលកំពុងសិក្សា</TableHead>
+                    <TableHead>អ៊ីមែល</TableHead>
+                    <TableHead>លេខទូរស័ព្ទ</TableHead>
+                    <TableHead>ស្ថានភាព</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {parents.map((parent) => (
+                    <TableRow key={parent.id}>
+                      <TableCell className="font-medium text-foreground">
+                        <div>{parent.fullName}</div>
+                        <div className="text-[11px] text-muted-foreground">{parent.occupation || "-"}</div>
+                      </TableCell>
+                      <TableCell>
+                        {parent.children && parent.children.length > 0 ? (
+                          parent.children.map((c) => (
+                            <div key={c.id} className="text-xs font-semibold text-foreground">
+                              {c.fullName} ({c.studentCode})
+                            </div>
+                          ))
+                        ) : (
+                          <span className="text-xs text-muted-foreground">មិនទាន់ភ្ជាប់សិស្ស</span>
+                        )}
+                      </TableCell>
+                      <TableCell className="text-muted-foreground text-xs font-mono">{parent.email}</TableCell>
+                      <TableCell className="font-mono text-xs text-muted-foreground">{parent.phone || "-"}</TableCell>
+                      <TableCell>
+                        <StatusBadge status={parent.status} />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          </>
         )}
       </div>
     </div>

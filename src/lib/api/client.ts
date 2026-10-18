@@ -7,7 +7,7 @@ export type { ApiErrorPayload } from "./errors";
 export { registerSessionExpiredHandler, unregisterSessionExpiredHandler };
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api/v1";
+  process.env.NEXT_PUBLIC_API_URL || "https://educorekh-api-production.up.railway.app/api/v1";
 
 /**
  * Spring Data Sort metadata
@@ -112,15 +112,17 @@ export function buildQueryString(params?: QueryParams): string {
 
 /**
  * Normalizes backend URL paths to ensure no duplicate /api or /api/v1 prefixes
- * and safely appends optional query parameters.
+ * and safely appends optional query parameters with strict separator verification.
+ * Guarantees that query parameters (e.g. size=100) are never accidentally concatenated
+ * onto endpoint paths without a leading '?' or '&' (e.g. preventing /studentssize=100).
  */
 export function normalizeApiUrl(endpoint: string, params?: QueryParams): string {
   const queryString = buildQueryString(params);
-  let resolvedUrl = endpoint;
+  let resolvedUrl = endpoint.trim();
 
-  if (!endpoint.startsWith("http://") && !endpoint.startsWith("https://")) {
+  if (!resolvedUrl.startsWith("http://") && !resolvedUrl.startsWith("https://")) {
     const cleanBase = BASE_URL.replace(/\/+$/, "");
-    let cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+    let cleanEndpoint = resolvedUrl.startsWith("/") ? resolvedUrl : `/${resolvedUrl}`;
 
     if (cleanBase.endsWith("/api/v1")) {
       if (cleanEndpoint.startsWith("/api/v1/")) {
@@ -143,10 +145,20 @@ export function normalizeApiUrl(endpoint: string, params?: QueryParams): string 
     return resolvedUrl;
   }
 
-  const separator = resolvedUrl.includes("?") ? "&" : "?";
+  // Ensure queryWithoutLeadingQuestion has no leading '?'
   const queryWithoutLeadingQuestion = queryString.startsWith("?")
     ? queryString.slice(1)
     : queryString;
+
+  if (!queryWithoutLeadingQuestion) {
+    return resolvedUrl;
+  }
+
+  // Determine correct separator avoiding duplicate '?' or '&'
+  let separator = "?";
+  if (resolvedUrl.includes("?")) {
+    separator = resolvedUrl.endsWith("?") || resolvedUrl.endsWith("&") ? "" : "&";
+  }
 
   return `${resolvedUrl}${separator}${queryWithoutLeadingQuestion}`;
 }

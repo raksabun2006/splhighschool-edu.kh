@@ -43,12 +43,12 @@ export function Navbar() {
   const userInitials = getInitials(displayName) || "BR";
 
   return (
-    <header className="sticky top-0 z-20 h-16 border-b border-border bg-card/80 backdrop-blur-md px-4 md:px-6 flex items-center justify-between transition-colors">
+    <header className="sticky top-0 z-20 h-16 border-b border-border bg-card/80 backdrop-blur-md px-3 sm:px-4 md:px-6 flex items-center justify-between transition-colors">
       {/* Left side: Mobile menu toggle & Search bar */}
-      <div className="flex items-center gap-3 md:gap-4 flex-1 max-w-lg">
+      <div className="flex items-center gap-2.5 sm:gap-3 md:gap-4 flex-1 max-w-lg min-w-0">
         <button
           onClick={toggleMobile}
-          className="p-2 rounded-lg border border-border text-muted-foreground hover:bg-accent hover:text-foreground md:hidden"
+          className="p-2 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-lg border border-border text-muted-foreground hover:bg-accent hover:text-foreground md:hidden cursor-pointer shrink-0"
           aria-label="បើកម៉ឺនុយ"
         >
           <Menu className="h-5 w-5" />
@@ -70,13 +70,13 @@ export function Navbar() {
       </div>
 
       {/* Right side: Home Website button, Academic year badge, theme toggle, notifications, profile */}
-      <div className="flex items-center gap-2 md:gap-3">
+      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 shrink-0">
         {/* Quick Link to Samrong Ponley Website */}
         <Link href="/" title="ទៅកាន់គេហទំព័រវិទ្យាល័យសំរោងពន្លៃ">
           <Button
             variant="outline"
             size="sm"
-            className="h-8 gap-1.5 text-xs font-medium border-border/80 bg-background/60 hover:bg-accent hover:text-accent-foreground text-foreground shadow-2xs transition-colors"
+            className="h-8.5 gap-1.5 text-xs font-medium border-border/80 bg-background/60 hover:bg-accent hover:text-accent-foreground text-foreground shadow-2xs transition-colors px-2.5 sm:px-3"
           >
             <Globe className="h-3.5 w-3.5 text-primary shrink-0" />
             <span className="hidden sm:inline">គេហទំព័រសាលា</span>
@@ -96,7 +96,7 @@ export function Navbar() {
           size="icon"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
           aria-label="ប្តូរពណ៌ផ្ទៃ"
-          className="text-muted-foreground hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground h-9 w-9 cursor-pointer"
         >
           {theme === "dark" ? (
             <Sun className="h-4 w-4 text-amber-400" />
@@ -111,7 +111,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              className="relative text-muted-foreground hover:text-foreground"
+              className="relative text-muted-foreground hover:text-foreground h-9 w-9 cursor-pointer"
               aria-label="សេចក្តីជូនដំណឹង"
             >
               <Bell className="h-4 w-4" />
@@ -121,7 +121,7 @@ export function Navbar() {
               </span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="right" className="w-80">
+          <DropdownMenuContent align="right" className="w-72 sm:w-80 max-w-[calc(100vw-1.5rem)]">
             <div className="flex items-center justify-between px-3 py-2 border-b border-border">
               <span className="font-semibold text-xs text-foreground">សេចក្តីជូនដំណឹង</span>
               <Badge variant="outline" className="text-[10px]">៣ ថ្មី</Badge>

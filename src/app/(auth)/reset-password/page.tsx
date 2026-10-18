@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GraduationCap, ArrowRight, Lock, CheckCircle2 } from "lucide-react";
+import { SchoolLogo } from "@/components/common/school-logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
@@ -9,8 +10,8 @@ export default function ResetPasswordPage() {
     <div className="min-h-screen flex items-center justify-center p-4 bg-muted/30">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
-          <div className="inline-flex h-12 w-12 rounded-2xl bg-primary items-center justify-center text-primary-foreground shadow-md mb-2">
-            <GraduationCap className="h-7 w-7" />
+          <div className="flex justify-center mb-2">
+            <SchoolLogo size="xl" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground">
             Set New Password
