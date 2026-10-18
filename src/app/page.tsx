@@ -181,63 +181,61 @@ export default function HomePage() {
 
       {/* Main Navigation Header */}
       <header className="border-b border-[#cfd2d8] dark:border-slate-800 bg-[#e0e1e6] dark:bg-[#151921] sticky top-0 z-40 transition-colors shadow-2xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 sm:gap-6 lg:gap-8">
           {/* School Brand Logo */}
-          <Link href="/" className="flex items-center gap-3 group focus:outline-none">
+          <Link href="/" className="flex items-center gap-3 group focus:outline-none shrink-0">
             <SchoolLogo size="md" />
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-lg sm:text-xl tracking-tight text-[#1b365d] dark:text-blue-400 font-khmer">
-                  វិទ្យាល័យសំរោងពន្លៃ
-                </span>
-              </div>
-              <span className="text-[11px] font-medium text-slate-600 dark:text-slate-300 block -mt-1 tracking-wide">
-                Samrong Ponley High School • ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo)
+            <div className="flex flex-col justify-center">
+              <span className="font-extrabold text-base sm:text-lg md:text-xl tracking-tight text-[#1b365d] dark:text-blue-400 font-khmer leading-tight">
+                វិទ្យាល័យសំរោងពន្លៃ
+              </span>
+              <span className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 tracking-wide">
+                Samrong Ponley High School
               </span>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-sm font-medium text-muted-foreground">
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-6 text-xs xl:text-sm font-medium text-slate-700 dark:text-slate-300">
             <Link
               href="/"
-              className="text-[#1b365d] dark:text-blue-400 font-semibold border-b-2 border-[#1b365d] pb-0.5"
+              className="text-[#1b365d] dark:text-blue-400 font-bold border-b-2 border-[#1b365d] dark:border-blue-400 pb-1"
             >
               ទំព័រដើម
             </Link>
             <Link
               href="/about"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-[#1b365d] dark:hover:text-blue-400 transition-colors pb-1 border-b-2 border-transparent"
             >
               អំពីសាលា
             </Link>
             <Link
               href="/programs"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-[#1b365d] dark:hover:text-blue-400 transition-colors pb-1 border-b-2 border-transparent"
             >
               កម្មវិធីសិក្សា
             </Link>
             <Link
               href="/apply"
-              className="hover:text-foreground transition-colors font-medium text-emerald-600 dark:text-emerald-400"
+              className="text-emerald-700 dark:text-emerald-400 font-semibold hover:text-emerald-800 transition-colors pb-1 border-b-2 border-transparent"
             >
               ចុះឈ្មោះចូលរៀន
             </Link>
             <Link
               href="/announcements"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-[#1b365d] dark:hover:text-blue-400 transition-colors pb-1 border-b-2 border-transparent"
             >
               សេចក្តីជូនដំណឹង
             </Link>
             <Link
               href="/faculty"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-[#1b365d] dark:hover:text-blue-400 transition-colors pb-1 border-b-2 border-transparent"
             >
               លោកគ្រូ-អ្នកគ្រូ
             </Link>
             <Link
               href="/contact"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-[#1b365d] dark:hover:text-blue-400 transition-colors pb-1 border-b-2 border-transparent"
             >
               ទំនាក់ទំនង
             </Link>

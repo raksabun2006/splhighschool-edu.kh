@@ -124,14 +124,14 @@ export default function ApplyPage() {
       {/* Top Header */}
       <header className="border-b border-[#cfd2d8] dark:border-slate-800 bg-[#e0e1e6] dark:bg-[#151921] sticky top-0 z-30 shadow-2xs">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group focus:outline-none">
+          <Link href="/" className="flex shrink-0 items-center gap-3 group focus:outline-none">
             <SchoolLogo size="md" />
-            <div>
-              <div className="font-bold text-base tracking-tight text-[#1b365d] dark:text-blue-400 flex items-center gap-1.5 leading-none font-khmer">
-                <span>វិទ្យាល័យសំរោងពន្លៃ</span>
-              </div>
-              <span className="text-[11px] font-medium text-slate-600 dark:text-slate-300">
-                Samrong Ponley High School • ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo)
+            <div className="flex flex-col justify-center">
+              <span className="font-extrabold text-base sm:text-lg tracking-tight text-[#1b365d] dark:text-blue-400 font-khmer leading-tight">
+                វិទ្យាល័យសំរោងពន្លៃ
+              </span>
+              <span className="text-[11px] sm:text-xs font-semibold text-slate-600 dark:text-slate-300 tracking-wide">
+                Samrong Ponley High School
               </span>
             </div>
           </Link>

@@ -40,15 +40,15 @@ export function PublicPageShell({
       </div>
       <header className="sticky top-0 z-40 border-b border-[#cfd2d8] dark:border-slate-800 bg-[#e0e1e6] dark:bg-[#151921] shadow-2xs">
         <div className="mx-auto flex h-16 sm:h-[4.5rem] max-w-7xl items-center justify-between gap-3 px-3 sm:px-6 lg:px-8">
-          <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+          <Link href="/" className="flex shrink-0 items-center gap-2.5 sm:gap-3 group focus:outline-none">
             <SchoolLogo size="sm" />
-            <div className="min-w-0">
-              <p className="truncate text-base sm:text-xl font-extrabold tracking-tight text-[#1b365d] dark:text-blue-400 font-khmer">
+            <div className="flex flex-col justify-center min-w-0">
+              <span className="truncate text-base sm:text-lg font-extrabold tracking-tight text-[#1b365d] dark:text-blue-400 font-khmer leading-tight">
                 វិទ្យាល័យសំរោងពន្លៃ
-              </p>
-              <p className="truncate text-[10px] font-medium tracking-wide text-slate-600 dark:text-slate-300 sm:text-[11px]">
-                Samrong Ponley High School • ស្រុកអង្គរបុរី ខេត្តតាកែវ (Angkor Borei, Takeo)
-              </p>
+              </span>
+              <span className="truncate text-[11px] sm:text-xs font-semibold tracking-wide text-slate-600 dark:text-slate-300">
+                Samrong Ponley High School
+              </span>
             </div>
           </Link>
 
